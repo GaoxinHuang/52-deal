@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealMart - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">Deal<span>Mart</span></a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="login.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-slider">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <h1>Summer Collection</h1>
+                        <p>Discover the latest trends for the season</p>
+                        <a href="categories.html" class="btn">Shop Now</a>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://via.placeholder.com/800x400" alt="Summer Collection">
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-categories">
+        <div class="container">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Electronics">
+                    </div>
+                    <h3>Electronics</h3>
+                    <a href="categories.html?category=electronics" class="category-link">View All</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Fashion">
+                    </div>
+                    <h3>Fashion</h3>
+                    <a href="categories.html?category=fashion" class="category-link">View All</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Home & Kitchen">
+                    </div>
+                    <h3>Home & Kitchen</h3>
+                    <a href="categories.html?category=home" class="category-link">View All</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Beauty">
+                    </div>
+                    <h3>Beauty</h3>
+                    <a href="categories.html?category=beauty" class="category-link">View All</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flash-sale">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Flash Sale</h2>
+                <div class="countdown">
+                    <span>Ends in:</span>
+                    <div class="countdown-timer">
+                        <div class="time-block">
+                            <span class="time">10</span>
+                            <span class="label">Hours</span>
+                        </div>
+                        <div class="time-block">
+                            <span class="time">45</span>
+                            <span class="label">Minutes</span>
+                        </div>
+                        <div class="time-block">
+                            <span class="time">30</span>
+                            <span class="label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="products-grid">
+                <div class="product-card sale-card">
+                    <div class="discount-badge">-40%</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Wireless Headphones">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Wireless Headphones</h3>
+                        <div class="product-price">
+                            <span class="current-price">$59.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(120)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card sale-card">
+                    <div class="discount-badge">-30%</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Smart Watch">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Smart Watch</h3>
+                        <div class="product-price">
+                            <span class="current-price">$89.99</span>
+                            <span class="original-price">$129.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(85)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card sale-card">
+                    <div class="discount-badge">-25%</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Bluetooth Speaker">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Bluetooth Speaker</h3>
+                        <div class="product-price">
+                            <span class="current-price">$44.99</span>
+                            <span class="original-price">$59.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(210)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card sale-card">
+                    <div class="discount-badge">-50%</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Power Bank">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Power Bank 10000mAh</h3>
+                        <div class="product-price">
+                            <span class="current-price">$24.99</span>
+                            <span class="original-price">$49.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(67)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-container">
+                <a href="deals.html" class="btn">View All Deals</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Smartphone">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Smartphone Pro Max</h3>
+                        <div class="product-price">
+                            <span class="current-price">$899.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(325)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Laptop">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Ultrabook Pro</h3>
+                        <div class="product-price">
+                            <span class="current-price">$1299.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(187)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Camera">
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Digital Camera 4K</h3>
+                        <div class="product-price">
+                            <span class="current-price">$649.99</span

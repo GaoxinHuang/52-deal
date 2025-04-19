@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - DealMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .categories-container {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+        
+        .filter-section {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333333;
+            font-weight: 600;
+            border-bottom: 1px solid #E0E0E0;
+            padding-bottom: 10px;
+        }
+        
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .price-inputs input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 5px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .color-option {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        .color-option:hover {
+            border-color: #FF8C00;
+        }
+        
+        .color-option.selected {
+            border-color: #FF8C00;
+        }
+        
+        .rating-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .rating-option i {
+            color: #FFD700;
+            margin-right: 2px;
+        }
+        
+        .rating-count {
+            color: #666666;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .filter-buttons button {
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .apply-filter {
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+        }
+        
+        .reset-filter {
+            background-color: transparent;
+            color: #666666;
+            border: 1px solid #E0E0E0;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+        }
+        
+        .top-filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFFFFF;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .sorting-options {
+            display: flex;
+            align-items: center;
+        }
+        
+        .sorting-options label {
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        
+        .sorting-options select {
+            padding: 8px;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .view-options button {
+            background-color: transparent;
+            border: none;
+            font-size: 18px;
+            color: #666666;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .view-options button.active,
+        .view-options button:hover {
+            color: #FF8C00;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: #666666;
+        }
+        
+        .breadcrumb .current {
+            color: #FF8C00;
+            font-weight: 500;
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 5px;
+            color: #666666;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid #E0E0E0;
+            margin: 0 5px;
+            border-radius: 4px;
+            color: #333333;
+            transition: all 0.3s;
+        }
+        
+        .pagination a.active,
+        .pagination a:hover {
+            background-color: #FF8C00;
+            color: white;
+            border-color: #FF8C00;
+        }
+        
+        .products-grid.list-view {
+            display: block;
+        }
+        
+        .products-grid.list-view .product-card {
+            display: flex;
+            margin-bottom: 20px;
+            max-height: 200px;
+        }
+        
+        .products-grid.list-view .product-image {
+            width: 200px;
+            flex-shrink: 0;
+        }
+        
+        .products-grid.list-view .product-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">Deal<span>Mart</span></a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="categories.html" class="active">Categories</a></li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="login.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator"><i class="fas fa-chevron-right"></i></span>
+            <span class="current">Categories</span>
+        </div>
+        
+        <div class="categories-container">
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title">Categories</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Electronics (245)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Smartphones (78)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Laptops (56)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Accessories (98)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Smart Home (36)
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">Price Range</h3>
+                    <div class="price-inputs">
+                        <input type="number" placeholder="Min">
+                        <input type="number" placeholder="Max">
+                    </div>
+                    <input type="range" min="0" max="1000" value="500" style="width: 100%">
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">Brand</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox">
+                            Apple (45)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Samsung (62)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Sony (38)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Dell (29)
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            HP (31)
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">Color</h3>
+                    <div class="color-options">
+                        <div class="color-option selected" style="background-color: #000000;"></div>
+                        <div class="color-option" style="background-color: #FFFFFF; border: 1px solid #E0E0E0;"></div>
+                        <div class="color-option" style="background-color: #FF0000;"></div>
+                        <div class="color-option" style="background-color: #0000FF;"></div>
+                        <div class="color-option" style="background-color: #008000;"></div>
+                        <div class="color-option" style="background-color: #FFFF00;"></div>
+                        <div class="color-option" style="background-color: #FFA500;"></div>
+                        <div class="color-option" style="background-color: #808080;"></div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">Customer Rating</h3>
+                    <div class="rating-options">
+                        <div class="rating-option">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(124)</span>
+                        </div>
+                        <div class="rating-option">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(186)</span>
+                        </div>
+                        <div class="rating-option">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(97)</span>
+                        </div>
+                        <div class="rating-option">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(45)</span>
+                        </div>
+                        <div class="rating-option">
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(12)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="reset-filter">Reset</button>
+                    <button class="apply-filter">Apply Filter</button>
+                </div>
+            </aside>
+            
+            <main class="main-content">
+                <div class="top-filter-bar">
+                    <div class="result-count">
+                        Showing 1-12 of 245 results
+                    </div>
+                    <div class="sorting-options">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select">
+                            <option>Popularity</option>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --jd-red: #e4393c;
+            --jd-light-gray: #f6f6f6;
+            --jd-gray: #e0e0e0;
+            --jd-dark-gray: #999;
+            --jd-text-primary: #333;
+            --jd-text-secondary: #666;
+            --jd-link-blue: #005ea7;
+        }
+        body { font-family: "Microsoft YaHei", sans-serif; margin: 0; padding: 0; box-sizing: border-box; background-color: var(--jd-light-gray); color: var(--jd-text-primary); font-size: 14px; }
+        a { text-decoration: none; color: var(--jd-link-blue); }
+        a:hover { color: var(--jd-red); text-decoration: underline; }
+        header, footer { background-color: #fff; padding: 1em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+        header h1 { color: var(--jd-red); font-size: 24px; margin: 0; }
+        nav { background-color: #f8f8f8; padding: 0.5em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+        nav a { margin: 0 1.5em; color: var(--jd-text-primary); font-size: 16px; }
+        nav a:hover { color: var(--jd-red); }
+        nav a i { margin-right: 5px; }
+        main { padding: 20px 0; max-width: 1100px; margin: 20px auto; }
+        h2 { text-align: left; color: var(--jd-text-primary); font-size: 20px; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid var(--jd-red); }
+        .checkout-container { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        .checkout-form section { margin-bottom: 20px; padding: 20px; border: 1px solid var(--jd-gray); border-radius: 4px; background-color: #fff; }
+        .checkout-form h3 { text-align: left; font-size: 18px; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid var(--jd-gray); padding-bottom: 10px; color: var(--jd-text-primary); }
+        .checkout-form h3 i { margin-right: 8px; color: var(--jd-red); }
+        .form-group { margin-bottom: 15px; display: flex; align-items: center; }
+        .form-group label { display: inline-block; width: 120px; text-align: right; margin-right: 15px; color: var(--jd-text-secondary); }
+        .form-group input[type='text'],
+        .form-group input[type='email'],
+        .form-group input[type='tel'],
+        .form-group select {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--jd-gray);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .form-row { display: flex; gap: 15px; margin-left: 135px; /* Align with inputs */ }
+        .form-row .form-group { flex: 1; margin-bottom: 0; margin-left: 0; }
+        .form-row .form-group label { display: none; /* Labels are above */ }
+        .order-summary { padding: 20px; border: 1px solid var(--jd-gray); background-color: #fff; border-radius: 4px; }
+        .order-summary h3 { text-align: left; font-size: 18px; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid var(--jd-gray); padding-bottom: 10px; color: var(--jd-text-primary); }
+        .order-summary h3 i { margin-right: 8px; color: var(--jd-red); }
+        .summary-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+        .summary-item span:first-child { color: var(--jd-text-secondary); }
+        .summary-item span:last-child { color: var(--jd-text-primary); font-weight: 500; }
+        .summary-total { font-weight: bold; font-size: 16px; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--jd-gray); color: var(--jd-red); }
+        .place-order-button { background-color: var(--jd-red); color: white; width: 100%; padding: 12px; border: none; cursor: pointer; font-size: 18px; font-weight: bold; border-radius: 4px; margin-top: 20px; transition: background-color 0.3s ease; }
+        .place-order-button:hover { background-color: #c81623; }
+        .place-order-button i { margin-right: 8px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-store"></i> Our E-commerce Store</h1>
+    </header>
+
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="products.html"><i class="fas fa-list"></i> Products</a>
+        <a href="#categories">Categories</a> <!-- Placeholder link -->
+        <a href="#about">About Us</a> <!-- Placeholder link -->
+        <a href="#contact">Contact</a> <!-- Placeholder link -->
+        <a href="cart.html" style="float: right;"><i class="fas fa-shopping-cart"></i> Cart (2)</a>
+        <a href="user-center.html" style="float: right; margin-right: 1em;"><i class="fas fa-user"></i> Account</a>
+    </nav>
+
+    <main>
+        <h2><i class="fas fa-credit-card"></i> Checkout</h2>
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <section class="shipping-address">
+                    <h3><i class="fas fa-truck"></i> Shipping Address</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="fname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="lname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address Line 1</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="address2">Address Line 2 (Optional)</label>
+                        <input type="text" id="address2" name="address2">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">ZIP Code</label>
+                            <input type="text" id="zip" name="zip" required>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country" required>
+                            <option value="us">United States</option>
+                            <option value="ca">Canada</option>
+                            <!-- Add more countries -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </section>
+
+                <section class="payment-method">
+                    <h3><i class="fas fa-lock"></i> Payment Method</h3>
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" name="card-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" name="card-number" placeholder="xxxx xxxx xxxx xxxx" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    <!-- Add other payment options like PayPal here -->
+                </section>
+            </div>
+
+            <div class="order-summary">
+                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                <div class="summary-item">
+                    <span>Product Name 1 (x1)</span>
+                    <span>$25.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Product Name 3 (x2)</span>
+                    <span>$84.00</span>
+                </div>
+                <hr>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>$109.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>$5.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tax</span>
+                    <span>$8.72</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span>$122.72</span>
+                </div>
+                <button class="place-order-button"><i class="fas fa-check-circle"></i> Place Order</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+</body>
+</html>

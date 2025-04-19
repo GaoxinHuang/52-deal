@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Center - Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --jd-red: #e4393c;
+            --jd-light-gray: #f6f6f6;
+            --jd-gray: #e0e0e0;
+            --jd-dark-gray: #999;
+            --jd-text-primary: #333;
+            --jd-text-secondary: #666;
+            --jd-link-blue: #005ea7;
+        }
+        body { font-family: "Microsoft YaHei", sans-serif; margin: 0; padding: 0; box-sizing: border-box; background-color: var(--jd-light-gray); color: var(--jd-text-primary); font-size: 14px; }
+        a { text-decoration: none; color: var(--jd-link-blue); }
+        a:hover { color: var(--jd-red); text-decoration: underline; }
+        header, footer { background-color: #fff; padding: 1em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+        header h1 { color: var(--jd-red); font-size: 24px; margin: 0; }
+        nav { background-color: #f8f8f8; padding: 0.5em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+        nav a { margin: 0 1.5em; color: var(--jd-text-primary); font-size: 16px; }
+        nav a:hover { color: var(--jd-red); }
+        nav a i { margin-right: 5px; }
+        main { padding: 20px 0; max-width: 1200px; margin: 20px auto; }
+        h2 { text-align: left; color: var(--jd-text-primary); font-size: 20px; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid var(--jd-red); }
+        .user-center-container { display: grid; grid-template-columns: 200px 1fr; gap: 20px; }
+        .sidebar { background-color: #fff; padding: 15px 0; border: 1px solid var(--jd-gray); border-radius: 4px; }
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar li a { display: block; padding: 10px 20px; color: var(--jd-text-secondary); border-left: 3px solid transparent; transition: all 0.3s ease; }
+        .sidebar li a i { margin-right: 10px; width: 16px; text-align: center; }
+        .sidebar li a:hover, .sidebar li a.active { background-color: var(--jd-light-gray); color: var(--jd-red); border-left-color: var(--jd-red); font-weight: bold; }
+        .content-section { background-color: #fff; padding: 25px; border: 1px solid var(--jd-gray); border-radius: 4px; }
+        .content-section h3 { font-size: 18px; margin-top: 0; border-bottom: 1px solid var(--jd-gray); padding-bottom: 10px; margin-bottom: 20px; color: var(--jd-text-primary); }
+        /* Styles for specific sections */
+        .order-history table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        .order-history th, .order-history td { border: 1px solid var(--jd-gray); padding: 10px 12px; text-align: left; vertical-align: middle; }
+        .order-history th { background-color: var(--jd-light-gray); font-weight: bold; color: var(--jd-text-secondary); }
+        .order-history td a { color: var(--jd-link-blue); }
+        .profile-form .form-group { margin-bottom: 15px; display: flex; align-items: center; }
+        .profile-form label { display: inline-block; width: 100px; text-align: right; margin-right: 15px; color: var(--jd-text-secondary); }
+        .profile-form input[type='text'],
+        .profile-form input[type='email'] {
+            flex-grow: 1;
+            max-width: 350px;
+            padding: 8px 12px;
+            border: 1px solid var(--jd-gray);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .profile-form input[readonly] { background-color: #eee; cursor: not-allowed; }
+        .profile-form button { background-color: var(--jd-red); color: white; padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-left: 115px; /* Align with inputs */ transition: background-color 0.3s ease; }
+        .profile-form button:hover { background-color: #c81623; }
+        .address-list .address-item { border: 1px solid var(--jd-gray); padding: 15px; margin-bottom: 15px; border-radius: 4px; position: relative; }
+        .address-list .address-item p { margin: 5px 0; color: var(--jd-text-secondary); }
+        .address-list .address-item p strong { color: var(--jd-text-primary); }
+        .address-list .address-actions { position: absolute; top: 15px; right: 15px; }
+        .address-list button { background-color: transparent; color: var(--jd-link-blue); border: none; cursor: pointer; padding: 3px 8px; font-size: 13px; margin-left: 10px; }
+        .address-list button:hover { color: var(--jd-red); }
+        .address-list .add-address-btn { background-color: var(--jd-red); color: white; padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 10px; transition: background-color 0.3s ease; }
+        .address-list .add-address-btn:hover { background-color: #c81623; }
+        .address-list .default-badge { background-color: var(--jd-red); color: white; font-size: 10px; padding: 2px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-store"></i> Our E-commerce Store</h1>
+    </header>
+
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="products.html"><i class="fas fa-list"></i> Products</a>
+        <a href="#categories">Categories</a> <!-- Placeholder link -->
+        <a href="#about">About Us</a> <!-- Placeholder link -->
+        <a href="#contact">Contact</a> <!-- Placeholder link -->
+        <a href="cart.html" style="float: right;"><i class="fas fa-shopping-cart"></i> Cart (0)</a>
+        <a href="user-center.html" style="float: right; margin-right: 1em;"><i class="fas fa-user"></i> Account</a>
+    </nav>
+
+    <main>
+        <h2><i class="fas fa-user-circle"></i> User Center</h2>
+        <div class="user-center-container">
+            <aside class="sidebar">
+                <ul>
+                    <li><a href="#profile" class="active"><i class="fas fa-id-card"></i> My Profile</a></li>
+                    <li><a href="#orders"><i class="fas fa-history"></i> Order History</a></li>
+                    <li><a href="#addresses"><i class="fas fa-map-marker-alt"></i> My Addresses</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </aside>
+            <section class="content-section" id="profile">
+                <h3>My Profile</h3>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="user-fname">First Name</label>
+                        <input type="text" id="user-fname" name="user-fname" value="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-lname">Last Name</label>
+                        <input type="text" id="user-lname" name="user-lname" value="Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email">Email Address</label>
+                        <input type="email" id="user-email" name="user-email" value="john.doe@example.com" readonly>
+                    </div>
+                    <button type="submit">Update Profile</button>
+                </form>
+            </section>
+
+            <!-- Placeholder sections for Orders, Addresses, Settings -->
+            <section class="content-section" id="orders" style="display: none;">
+                 <h3>Order History</h3>
+                 <div class="order-history">
+                     <table>
+                         <thead>
+                             <tr>
+                                 <th>Order ID</th>
+                                 <th>Date</th>
+                                 <th>Total</th>
+                                 <th>Status</th>
+                                 <th>Action</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td>#12345</td>
+                                 <td>2024-07-20</td>
+                                 <td>$122.72</td>
+                                 <td>Shipped</td>
+                                 <td><a href="#view-order">View Details</a></td>
+                             </tr>
+                             <tr>
+                                 <td>#12300</td>
+                                 <td>2024-07-15</td>
+                                 <td>$55.00</td>
+                                 <td>Delivered</td>
+                                 <td><a href="#view-order">View Details</a></td>
+                             </tr>
+                             <!-- More orders -->
+                         </tbody>
+                     </table>
+                 </div>
+            </section>
+
+            <section class="content-section" id="addresses" style="display: none;">
+                 <h3>My Addresses</h3>
+                 <div class="address-list">
+                     <div class="address-item">
+                         <p><strong>Default Shipping Address</strong></p>
+                         <p>John Doe</p>
+                         <p>123 Main St, Anytown, USA 12345</p>
+                         <button>Edit</button>
+                         <button>Delete</button>
+                     </div>
+                     <div class="address-item">
+                         <p><strong>Work Address</strong></p>
+                         <p>John Doe</p>
+                         <p>456 Business Ave, Workville, USA 67890</p>
+                         <button>Edit</button>
+                         <button>Delete</button>
+                         <button>Set as Default</button>
+                     </div>
+                     <button style="margin-top: 1em;">Add New Address</button>
+                 </div>
+            </section>
+
+             <section class="content-section" id="settings" style="display: none;">
+                 <h3>Account Settings</h3>
+                 <p>Change Password, Notification Preferences, etc.</p>
+                 <!-- Add form elements for settings -->
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+    <script>
+        // Basic tab switching logic for user center
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Prevent default anchor behavior for logout link if needed
+                    if (link.getAttribute('href') !== '#logout') {
+                        e.preventDefault();
+
+                        // Remove active class from all links
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        // Add active class to the clicked link
+                        link.classList.add('active');
+
+                        // Hide all content sections
+                        contentSections.forEach(section => section.style.display = 'none');
+
+                        // Show the target section
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetSection = document.getElementById(targetId);
+                        if (targetSection) {
+                            targetSection.style.display = 'block';
+                        }
+                    }
+                });
+            });
+
+            // Initially show the profile section
+            document.getElementById('profile').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

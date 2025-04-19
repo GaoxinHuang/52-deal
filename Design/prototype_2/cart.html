@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --jd-red: #e4393c;
+            --jd-light-gray: #f6f6f6;
+            --jd-gray: #e0e0e0;
+            --jd-dark-gray: #999;
+            --jd-text-primary: #333;
+            --jd-text-secondary: #666;
+            --jd-link-blue: #005ea7;
+        }
+        body { font-family: "Microsoft YaHei", sans-serif; margin: 0; padding: 0; box-sizing: border-box; background-color: var(--jd-light-gray); color: var(--jd-text-primary); font-size: 14px; }
+        a { text-decoration: none; color: var(--jd-link-blue); }
+        a:hover { color: var(--jd-red); text-decoration: underline; }
+        header, footer { background-color: #fff; padding: 1em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+        header h1 { color: var(--jd-red); font-size: 24px; margin: 0; }
+        nav { background-color: #f8f8f8; padding: 0.5em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+        nav a { margin: 0 1.5em; color: var(--jd-text-primary); font-size: 16px; }
+        nav a:hover { color: var(--jd-red); }
+        nav a i { margin-right: 5px; }
+        main { padding: 20px 0; max-width: 1100px; margin: 20px auto; }
+        h2 { text-align: left; color: var(--jd-text-primary); font-size: 20px; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid var(--jd-red); }
+        .cart-container { margin-top: 20px; background-color: #fff; padding: 25px; border: 1px solid var(--jd-gray); border-radius: 4px; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 13px; }
+        .cart-table th, .cart-table td { border: 1px solid var(--jd-gray); padding: 12px 15px; text-align: center; vertical-align: middle; }
+        .cart-table th { background-color: var(--jd-light-gray); font-weight: bold; color: var(--jd-text-secondary); }
+        .cart-table td:nth-child(2) { text-align: left; } /* Align product name left */
+        .cart-table img { max-width: 80px; height: auto; vertical-align: middle; margin-right: 15px; border: 1px solid var(--jd-gray); }
+        .cart-table input[type='number'] { width: 50px; padding: 5px; text-align: center; border: 1px solid var(--jd-gray); border-radius: 3px; }
+        .cart-table button { background: none; border: none; color: var(--jd-link-blue); cursor: pointer; font-size: 1em; }
+        .cart-table button:hover { color: var(--jd-red); }
+        .cart-summary { text-align: right; margin-bottom: 20px; padding: 15px; background-color: var(--jd-light-gray); border: 1px solid var(--jd-gray); border-radius: 4px; }
+        .cart-summary h3 { margin: 0 0 10px 0; font-size: 16px; color: var(--jd-text-primary); text-align: left; }
+        .cart-summary p { font-size: 18px; font-weight: bold; color: var(--jd-red); margin: 5px 0; }
+        .checkout-button { background-color: var(--jd-red); color: white; padding: 10px 30px; border: none; cursor: pointer; font-size: 16px; font-weight: bold; border-radius: 4px; text-decoration: none; transition: background-color 0.3s ease; }
+        .checkout-button:hover { background-color: #c81623; }
+        .checkout-button i { margin-right: 8px; }
+        .empty-cart { text-align: center; color: var(--jd-text-secondary); padding: 30px; border: 1px dashed var(--jd-gray); background-color: #fff; border-radius: 4px; }
+        .empty-cart i { font-size: 3em; display: block; margin-bottom: 15px; color: var(--jd-dark-gray); }
+        .empty-cart a { color: var(--jd-link-blue); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-store"></i> Our E-commerce Store</h1>
+    </header>
+
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="products.html"><i class="fas fa-list"></i> Products</a>
+        <a href="#categories">Categories</a> <!-- Placeholder link -->
+        <a href="#about">About Us</a> <!-- Placeholder link -->
+        <a href="#contact">Contact</a> <!-- Placeholder link -->
+        <a href="cart.html" style="float: right;"><i class="fas fa-shopping-cart"></i> Cart (2)</a> <!-- Example count -->
+        <a href="user-center.html" style="float: right; margin-right: 1em;"><i class="fas fa-user"></i> Account</a>
+    </nav>
+
+    <main>
+        <h2><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h2>
+
+        <div class="cart-container">
+            <!-- Example: Cart with items -->
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="#" alt="Product 1"></td>
+                        <td>Product Name 1</td>
+                        <td>$25.00</td>
+                        <td><input type="number" value="1" min="1"></td>
+                        <td>$25.00</td>
+                        <td><button><i class="fas fa-trash-alt"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="#" alt="Product 3"></td>
+                        <td>Product Name 3</td>
+                        <td>$42.00</td>
+                        <td><input type="number" value="2" min="1"></td>
+                        <td>$84.00</td>
+                        <td><button><i class="fas fa-trash-alt"></i></button></td>
+                    </tr>
+                    <!-- Add more cart items as needed -->
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <h3>Cart Total</h3>
+                <p>$109.00</p>
+                <a href="checkout.html" class="checkout-button"><i class="fas fa-credit-card"></i> Proceed to Checkout</a>
+            </div>
+
+            <!-- Example: Empty cart message (uncomment to show) -->
+            <!--
+            <div class="empty-cart">
+                <p><i class="fas fa-shopping-bag"></i> Your cart is currently empty.</p>
+                <a href="products.html">Continue Shopping</a>
+            </div>
+            -->
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+</body>
+</html>

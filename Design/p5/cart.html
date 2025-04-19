@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - DealMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .cart-container {
+            padding: 40px 0;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: #666666;
+        }
+        
+        .breadcrumb .current {
+            color: #FF8C00;
+            font-weight: 500;
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 5px;
+            color: #666666;
+        }
+        
+        .cart-header {
+            margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .cart-empty i {
+            font-size: 60px;
+            color: #E0E0E0;
+            margin-bottom: 20px;
+        }
+        
+        .cart-empty h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333333;
+        }
+        
+        .cart-empty p {
+            margin-bottom: 25px;
+            color: #666666;
+        }
+        
+        .cart-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .cart-items {
+            flex: 2;
+        }
+        
+        .cart-summary {
+            flex: 1;
+        }
+        
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .cart-table th {
+            background-color: #F5F5F5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333333;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .cart-table td {
+            padding: 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .product-col {
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .product-info .product-variant {
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .quantity-col {
+            width: 120px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            max-width: 120px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #F5F5F5;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-btn:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .quantity-btn:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: 1px solid #E0E0E0;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .price-col {
+            font-weight: 600;
+            color: #333333;
+        }
+        
+        .subtotal-col {
+            font-weight: 600;
+            color: #FF8C00;
+        }
+        
+        .remove-col {
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background-color: transparent;
+            border: none;
+            color: #666666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .remove-btn:hover {
+            color: #F44336;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .coupon-form {
+            display: flex;
+            align-items: center;
+        }
+        
+        .coupon-input {
+            padding: 10px 15px;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px 0 0 4px;
+            width: 200px;
+            outline: none;
+        }
+        
+        .apply-coupon-btn {
+            padding: 10px 15px;
+            background-color: #333333;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-coupon-btn:hover {
+            background-color: #555555;
+        }
+        
+        .update-cart-btn {
+            padding: 10px 15px;
+            background-color: #F5F5F5;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .update-cart-btn:hover {
+            background-color: #E0E0E0;
+        }
+        
+        .cart-summary-card {
+            background-color: #F5F5F5;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E0E0E0;
+            font-weight: 600;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-label {
+            color: #666666;
+        }
+        
+        .summary-value {
+            font-weight: 600;
+        }
+        
+        .summary-total {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FF8C00;
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 0;
+            background-color: #FF8C00;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #FF6B00;
+        }
+        
+        .payment-methods {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .payment-title {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+        
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            object-fit: contain;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            color: #FF8C00;
+            font-weight: 500;
+        }
+        
+        .continue-shopping i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">Deal<span>Mart</span></a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <a href="cart.html" class="cart-icon active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="login.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="cart-container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span class="current">Shopping Cart</span>
+            </div>
+            
+            <div class="cart-header">
+                <h1 class="page-title">Shopping Cart</h1>
+                <p>3 items in your cart</p>
+            </div>
+            
+            <!-- Cart with items -->
+            <div class="cart-content">
+                <div class="cart-items">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="product-col">
+                                        <div class="product-image">
+                                            <img src="https://via.placeholder.com/150x150" alt="Wireless Headphones">
+                                        </div>
+                                        <div class="product-info">
+                                            <h3>Wireless Headphones</h3>
+                                            <p class="product-variant">Color: Black</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price-col">$59.99</td>
+                                <td class="quantity-col">
+                                    <div class="quantity-selector">
+                                        <button class="quantity-btn">-</button>
+                                        <input type="text" class="quantity-input" value="1">
+                                        <button class="quantity-btn">+</button>
+                                    </div>
+                                </td>
+                                <td class="subtotal-col">$59.99</td>
+                                <td class="remove-col">
+                                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-col">
+                                        <div class="product-image">
+                                            <img src="https://via.placeholder.com/150x150" alt="Smartphone Pro Max">
+                                        </div>
+                                        <div class="product-info">
+                                            <h3>Smartphone Pro Max</h3>
+                                            <p class="product-variant">Color: Silver, Storage: 128GB</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price-col">$899.99</td>
+                                <td class="quantity-col">
+                                    <div class="quantity-selector">
+                                        <button class="quantity-btn">-</button>
+                                        <input type="text" class="quantity-input" value="1">
+                                        <button class="quantity-btn">+</button>
+                                    </div>
+                                </td>
+                                <td class="subtotal-col">$899.99</td>
+                                <td class="remove-col">
+                                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-col">
+                                        <div class="product-image">
+                                            <img src="https://via.placeholder.com/150x150" alt="Smart Watch">
+                                        </div>
+                                        <div class="product-info">
+                                            <h3>Smart Watch</h3>
+                                            <p class="product-variant">Color: Blue</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price-col">$89.99</td>
+                                <td class="quantity-col">
+                                    <div class="quantity-selector">
+                                        <button class="quantity-btn">-</button>
+                                        <input type="text" class="quantity-input" value="1">
+                                        <button class="quantity-btn">+</button>
+                                    </div

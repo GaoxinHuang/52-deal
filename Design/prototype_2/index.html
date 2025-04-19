@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Homepage - Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+         :root {
+              --jd-red: #e4393c;
+              --jd-light-gray: #f6f6f6;
+              --jd-gray: #e0e0e0;
+              --jd-dark-gray: #999;
+              --jd-text-primary: #333;
+              --jd-text-secondary: #666;
+              --jd-link-blue: #005ea7;
+          }
+          body { font-family: "Microsoft YaHei", sans-serif; margin: 0; padding: 0; box-sizing: border-box; background-color: var(--jd-light-gray); color: var(--jd-text-primary); font-size: 14px; }
+          a { text-decoration: none; color: var(--jd-link-blue); }
+          a:hover { color: var(--jd-red); text-decoration: underline; }
+          header, footer { background-color: #fff; padding: 1em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+          header h1 { color: var(--jd-red); font-size: 24px; margin: 0; }
+          nav { background-color: #f8f8f8; padding: 0.5em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+          nav a { margin: 0 1.5em; color: var(--jd-text-primary); font-size: 16px; }
+          nav a:hover { color: var(--jd-red); }
+          nav a i { margin-right: 5px; }
+          main { padding: 20px 0; max-width: 1200px; margin: 20px auto; }
+          h2 { text-align: left; color: var(--jd-text-primary); font-size: 20px; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid var(--jd-red); }
+          .section { margin-bottom: 25px; background-color: #fff; border: 1px solid var(--jd-gray); border-radius: 4px; padding: 20px; }
+          .hero-banner { background-color: var(--jd-red); color: white; text-align: center; padding: 40px 20px; border-radius: 4px; border: none; }
+          .hero-banner h2 { color: white; font-size: 28px; margin-bottom: 10px; border: none; padding: 0; text-align: center; }
+          .hero-banner p { font-size: 16px; }
+          .product-grid, .special-offers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+          .product-item, .offer-item { background-color: #fff; border: 1px solid var(--jd-gray); padding: 15px; text-align: center; border-radius: 4px; transition: box-shadow 0.3s ease; }
+          .product-item:hover, .offer-item:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+          .product-item img, .offer-item img { max-width: 180px; height: 180px; object-fit: contain; margin-bottom: 10px; background-color: #fff; display: block; margin-left: auto; margin-right: auto; }
+          .product-item h3, .offer-item h3 { font-size: 14px; margin: 10px 0 5px 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: var(--jd-text-primary); font-weight: normal; }
+          .product-item p, .offer-item p { color: var(--jd-text-secondary); font-size: 12px; margin-bottom: 10px; height: 2.4em; overflow: hidden; }
+          .price { font-weight: bold; color: var(--jd-red); font-size: 18px; margin-bottom: 10px; }
+          .old-price { text-decoration: line-through; color: var(--jd-dark-gray); margin-left: 8px; font-size: 13px; }
+          .product-item button, .offer-item button { background-color: var(--jd-red); color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background-color 0.3s ease; margin-top: 5px; }
+          .product-item button:hover, .offer-item button:hover { background-color: #c81623; }
+          .product-item button i, .offer-item button i { margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-store"></i> Our E-commerce Store</h1>
+    </header>
+
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="products.html"><i class="fas fa-list"></i> Products</a>
+        <a href="#categories">Categories</a> <!-- Placeholder link -->
+        <a href="#about">About Us</a> <!-- Placeholder link -->
+        <a href="#contact">Contact</a> <!-- Placeholder link -->
+        <a href="cart.html" style="float: right;"><i class="fas fa-shopping-cart"></i> Cart (0)</a>
+        <a href="user-center.html" style="float: right; margin-right: 1em;"><i class="fas fa-user"></i> Account</a>
+    </nav>
+
+    <main>
+        <section class="hero-banner">
+            <h2><i class="fas fa-bullhorn"></i> Welcome to Our Store!</h2>
+            <p>Discover amazing deals and top-quality products inspired by JD.com's selection.</p>
+            <!-- Placeholder for a more dynamic banner/carousel -->
+        </section>
+
+        <section class="section special-offers">
+            <h2><i class="fas fa-tags"></i> Special Offers</h2>
+            <div class="special-offers-grid">
+                <div class="offer-item">
+                    <img src="#" alt="Special Offer 1">
+                    <p class="price">$19.99 <span class="old-price">$29.99</span></p>
+                    <h3>Special Deal Item 1 - Limited Time Offer!</h3>
+                    <p>Grab this amazing deal before it's gone.</p>
+                    <button><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+                <div class="offer-item">
+                    <img src="#" alt="Special Offer 2">
+                    <p class="price">$49.99 <span class="old-price">$69.99</span></p>
+                    <h3>Special Deal Item 2 - Exclusive Discount</h3>
+                    <p>Only available here for a short period.</p>
+                    <button><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+                <div class="offer-item">
+                    <img src="#" alt="Special Offer 3">
+                    <p class="price">$9.99 <span class="old-price">$15.99</span></p>
+                    <h3>Special Deal Item 3 - Don't Miss Out!</h3>
+                    <p>Incredible value, perfect for everyday use.</p>
+                    <button><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+                 <div class="offer-item">
+                    <img src="#" alt="Special Offer 4">
+                    <p class="price">$99.99 <span class="old-price">$129.99</span></p>
+                    <h3>Special Deal Item 4 - Weekend Sale!</h3>
+                    <p>High-demand item, get yours now.</p>
+                    <button><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section featured-products">
+            <h2><i class="fas fa-star"></i> Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="#" alt="Product 1">
+                    <p class="price">$25.00</p>
+                    <h3>Product Name 1 - Popular Choice</h3>
+                    <p>A top-rated item loved by customers.</p>
+                    <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+                </div>
+                <div class="product-item">
+                    <img src="#" alt="Product 2">
+                    <p class="price">$35.50</p>
+                    <h3>Product Name 2 - New Arrival</h3>
+                    <p>Check out the latest addition to our collection.</p>
+                    <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+                </div>
+                <div class="product-item">
+                    <img src="#" alt="Product 3 - Best Seller">
+                    <p class="price">$42.00</p>
+                    <h3>Product Name 3</h3>
+                    <p>Consistently a customer favorite.</p>
+                    <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+                </div>
+                <div class="product-item">
+                    <img src="#" alt="Product 4">
+                    <p class="price">$18.75</p>
+                    <h3>Product Name 4 - Great Value</h3>
+                    <p>Affordable quality you can trust.</p>
+                    <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+</body>
+</html>

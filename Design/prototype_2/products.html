@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List - Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+             --jd-red: #e4393c;
+             --jd-light-gray: #f6f6f6;
+             --jd-gray: #e0e0e0;
+             --jd-dark-gray: #999;
+             --jd-text-primary: #333;
+             --jd-text-secondary: #666;
+             --jd-link-blue: #005ea7;
+         }
+         body { font-family: "Microsoft YaHei", sans-serif; margin: 0; padding: 0; box-sizing: border-box; background-color: var(--jd-light-gray); color: var(--jd-text-primary); font-size: 14px; }
+         a { text-decoration: none; color: var(--jd-link-blue); }
+         a:hover { color: var(--jd-red); text-decoration: underline; }
+         header, footer { background-color: #fff; padding: 1em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+         header h1 { color: var(--jd-red); font-size: 24px; margin: 0; }
+         nav { background-color: #f8f8f8; padding: 0.5em 0; text-align: center; border-bottom: 1px solid var(--jd-gray); }
+         nav a { margin: 0 1.5em; color: var(--jd-text-primary); font-size: 16px; }
+         nav a:hover { color: var(--jd-red); }
+         nav a i { margin-right: 5px; }
+         main { padding: 20px 0; max-width: 1200px; margin: 20px auto; }
+         h2 { text-align: left; color: var(--jd-text-primary); font-size: 20px; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid var(--jd-red); }
+         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+         .product-item { background-color: #fff; border: 1px solid var(--jd-gray); padding: 15px; text-align: center; border-radius: 4px; transition: box-shadow 0.3s ease; }
+         .product-item:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+         .product-item img { max-width: 180px; height: 180px; object-fit: contain; margin-bottom: 10px; background-color: #fff; display: block; margin-left: auto; margin-right: auto; }
+         .product-item h3 { font-size: 14px; margin: 10px 0 5px 0; height: 3em; /* Limit title height */ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: var(--jd-text-primary); font-weight: normal; }
+         .product-item .price { font-weight: bold; color: var(--jd-red); font-size: 18px; margin-bottom: 10px; }
+         .product-item p { color: var(--jd-text-secondary); font-size: 12px; margin-bottom: 10px; height: 2.4em; overflow: hidden; }
+         .product-item button { background-color: var(--jd-red); color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background-color 0.3s ease; }
+         .product-item button:hover { background-color: #c81623; }
+         .filter-sort { margin-bottom: 20px; padding: 15px; background-color: #fff; border: 1px solid var(--jd-gray); border-radius: 4px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+         .filter-sort label { margin-right: 5px; color: var(--jd-text-secondary); }
+         .filter-sort select, .filter-sort input { padding: 6px 10px; border: 1px solid var(--jd-gray); border-radius: 3px; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-store"></i> Our E-commerce Store</h1>
+    </header>
+
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="products.html"><i class="fas fa-list"></i> Products</a>
+        <a href="#categories">Categories</a> <!-- Placeholder link -->
+        <a href="#about">About Us</a> <!-- Placeholder link -->
+        <a href="#contact">Contact</a> <!-- Placeholder link -->
+        <a href="cart.html" style="float: right;"><i class="fas fa-shopping-cart"></i> Cart (0)</a>
+        <a href="user-center.html" style="float: right; margin-right: 1em;"><i class="fas fa-user"></i> Account</a>
+    </nav>
+
+    <main>
+        <h2><i class="fas fa-th-large"></i> All Products</h2>
+
+        <div class="filter-sort">
+            <div>
+                <label for="category"><i class="fas fa-filter"></i> Category:</label>
+                <select id="category" name="category">
+                    <option value="all">All</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="home">Home Goods</option>
+                </select>
+            </div>
+            <div>
+                <label for="sort"><i class="fas fa-sort-amount-down"></i> Sort by:</label>
+                <select id="sort" name="sort">
+                    <option value="featured">Featured</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="name-asc">Name: A-Z</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="product-grid">
+            <!-- Repeat product items -->
+            <div class="product-item">
+                <img src="#" alt="Product 1">
+                <img src="#" alt="Product 1">
+                <p class="price">$25.00</p>
+                <h3>Product Name 1 - A slightly longer title to test wrapping</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Product 2">
+                <img src="#" alt="Product 2">
+                <p class="price">$35.50</p>
+                <h3>Product Name 2</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Product 3">
+                <img src="#" alt="Product 3">
+                <p class="price">$42.00</p>
+                <h3>Product Name 3</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Product 4">
+                <img src="#" alt="Product 4">
+                <p class="price">$18.75</p>
+                <h3>Product Name 4</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Product 5">
+                <img src="#" alt="Product 5">
+                <p class="price">$55.00</p>
+                <h3>Product Name 5</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Product 6">
+                <img src="#" alt="Product 6">
+                <p class="price">$68.20</p>
+                <h3>Product Name 6</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+             <div class="product-item">
+                <img src="#" alt="Product 7">
+                <img src="#" alt="Product 7">
+                <p class="price">$12.99</p>
+                <h3>Product Name 7</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+             <div class="product-item">
+                <img src="#" alt="Product 8">
+                <img src="#" alt="Product 8">
+                <p class="price">$89.50</p>
+                <h3>Product Name 8</h3>
+                <p>Short description.</p>
+                <button onclick="location.href='product-detail.html'"><i class="fas fa-search"></i> View Details</button>
+            </div>
+            <!-- Add more product items as needed -->
+        </div>
+
+        <!-- Pagination could go here -->
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+</body>
+</html>
